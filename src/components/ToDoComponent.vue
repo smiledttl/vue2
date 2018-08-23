@@ -33,7 +33,7 @@ export default {
   },
   filters: {
     date (val) {
-      debugger
+      //debugger
       // var tempDate = new Date(val);
       // return tempDate.year() + '-' + tempDate.month() + '-' + tempDate.day()
       return formatDate(val)
