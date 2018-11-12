@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>my-webpack-demo</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" />
+  </head>
+  <body style="padding:30px;">
+    
+  </body>
+</html>
+<script type="text/javascript" >
+// Singleton to track dependencies
+var Dep ={ target:null};
+
+function DefineVUEProperty(obj,key,val){
+  var deps=[];
+  Object.defineProperty(obj,key,{
+    get:function(){
+      if(Dep.target && deps.indexOf(Dep.target) == -1){
+        console.log("Adding target to deps for " + key);
+        deps.push(Dep.target);
+      }
+      console.log("Getting value of " + key);
+      return val;
+    },
+    set:function(newValue){
+      val=newValue;
+      for(var i=0; i<deps.length;i++){
+        deps[i]();
+      }
+    }
+  })
+}
+
+function DefineVUEComputed(obj,key,computeFunc,callbackFunc){
+  var onDependencyUpdated = function () {
+     var value = computeFunc (); 
+     console.log(' dependence value:' + value) 
+     callbackFunc (value);
+  }; 
+
+  Object.defineProperty(obj,key,{
+    get:function(){
+      console.log("Getting computed property :" + key);
+      Dep.target = onDependencyUpdated;
+      var value=computeFunc();
+      Dep.target=null;
+      return value;
+    }
+  })
+}
+
+
+//demo code
+var bankDemo={};
+DefineVUEProperty(bankDemo,"money",1);
+DefineVUEComputed(bankDemo,"RMB",function(){
+  if(bankDemo.money>100){
+    return "$"+bankDemo.money;
+  }else{
+    return "￥"+bankDemo.money;
+  }
+}, function (newValue) {
+  console.log ("CHANGED!! The person's RMB is now: " + newValue)
+});
+console.log(bankDemo.money);
+console.log(bankDemo.RMB);
+
+bankDemo.money=22;
+
+</script>

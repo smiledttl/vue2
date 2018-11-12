@@ -6,8 +6,47 @@
     <title>my-webpack-demo</title>
     <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" />
   </head>
-  <body>
-    <div id="app11"></div>
+  <body style="padding:30px;">
+    <div id="app11">
+        <span v-text="count"></span>
+        <button v-on:click="inc" >+</button>
+    </div>
     <!-- built files will be auto injected -->
+   <!-- <h1>todo app</h1>
+    <div id="todoapp">
+        <input v-model="content" placeholder="new todo" />
+        <button v-on:click="add" >+</button>
+        <ul style="list-style-type:none;">
+          <li v-for="(item,index) in items">{{item}}  <button v-on:click="del(index)" >X</button></li>
+        </ul>
+        <button @click =" change" > change </button > <pre>{{ $data }} </pre>
+        <div>
+          <h1>{{myContent}}</h1>
+          <h1>动态添加的变量{{b}}</h1>
+          <h1>动态添加的变量{{obj}}</h1>
+          <button @click ="addProperty" > addProperty b </button >
+          <button @click ="changeDinamicPropery" > changeDinamicPropery b </button >
+            <button @click ="changeDinamicProperyC" > changeDinamicPropery C </button >
+        </div>
+        <div v-bind:style ="styleObject"> 刘传君. Vue.js小书 (Kindle位置367). 人民邮电出版社. </div>
+
+        <div>
+          <ul style="list-style-type:none;">
+            <li v-for="(v,k) in person">{{k}},{{v}}</li>
+            <li v-for="i in 10">{{i}}</li>
+          </ul>
+          <input type="text" v-hidden="f" value="v-hidden">
+          <label>v-bind</label><input type="checkbox" ref="ck1" v-bind:checked="isChecked" v-on:change="checkChange" />
+          {{isChecked}}<br>
+          <label>v-model</label><input type="checkbox" v-model="isChecked" />
+        </div>
+        <div>
+          <tag></tag>
+        </div>
+        <div>
+          <compontent v-bind:is="current"></compontent>
+        </div> -->
+
+    </div>
   </body>
 </html>

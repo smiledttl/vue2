@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p><button v-on:click="increment">{{name}}</button>Counter:{{ counter }}</p>
+    <p><button v-on:click="increment_sub">{{name}}</button>Counter:{{ counter }}</p>
   </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
     }
   },
   methods: {
-    increment () {
+    increment_sub () {
       this.counter += 1
       this.$emit('increment')
     }
